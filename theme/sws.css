@@ -1,0 +1,131 @@
+/* $Id$ */
+
+/*
+ *SWS STYLES
+ */
+
+/** sws-pr-header **/
+  .pr-organization { font-weight: bold; text-align: center; padding-bottom: 20px; padding-top: 20px; }
+  .pr-department { text-align: center; padding-bottom: 20px; }
+  .dateline-container { width: 100%; padding-bottom: 20px; }
+  .dateline{ border-top: 1px solid #000000; padding-bottom: 10px; text-align: center; width: 74%; margin-right: 13%; margin-left: 13%;  }
+  .dateline div { font-size: 12px; }
+  .dateline .date { clear: both; padding-bottom: 20px; }
+  .dateline .pr-status { float: left; }
+  .dateline .pr-date { float: right; }
+  .dateline .contacts { clear: both; }
+  .dateline .pr-contact-label { float: left; }
+  .dateline .pr-contact {float: right; clear: both; }
+  .dateline .pr-contact-0 {clear: right; }
+  .pr-headline{ font-weight: bold; text-align: center; padding-bottom: 20px; }
+  .pr-subhead{ font-style: italic; text-align: center; padding-bottom: 20px; }
+
+/** sws-pr-footer **/
+  .pr-footer { text-align: center; font-style: italic; font-size: 90%; }
+
+/** pic, video and map styling now handled by sws_fields module **
+    phase out use of sws.module for styling fields... 
+
+/** sws-video-field **
+
+  .video-left 
+  {
+    float: left;
+    padding: 20px;
+  }   
+
+  .video-right
+  {
+    float: right;
+    padding: 20px;
+  }   
+
+  .video-center 
+  {
+    text-align: center;
+    padding: 20px;
+  } 
+
+/** sws-newsclip-header **/
+
+  .news-clip-banner
+  {
+    text-align: center;
+  }
+
+  .org-type-newspaper
+  {
+    font-family: Georgia,"Times New Roman",Times,serif;
+  }
+
+  .news-org-name
+  {
+    font-size: 220%;
+  }
+ 
+  .news-clip-date
+  {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid;
+  }
+
+  .org-type-newspaper .news-clip-date
+  {
+    font-style: italic;
+    text-transform: uppercase;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  .news-clip-headline 
+  {
+    font-size: 200%;
+    margin-bottom: 10px;
+    line-height: 30px;
+  }
+  
+  .org-type-newspaper .news-clip-headline
+  {
+    font-weight: bold;
+  }  
+
+  a.news-headline-link
+  {
+    color: black;
+  }
+
+  .news-clip-subhead 
+  {
+    margin-bottom: 10px;
+    font-size: 160%;
+  }
+
+  .news-clip-by-line 
+  {
+    margin-bottom: 10px;
+  }
+
+  .org-type-newspaper .news-clip-by-line
+  {
+    font-variant: small-caps;
+  }
+
+  .news-clip-by
+  {
+    float: left;
+  }
+  
+  .news-clip-author
+  {
+    float: left;
+  }
+
+/** news clip footer **/
+  .news-clip-footer
+  {
+    font-style: italic; 
+    font-size: 90%; 
+  }

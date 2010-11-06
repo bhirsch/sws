@@ -1,0 +1,112 @@
+ <?php
+/**
+ * @file sws.install
+ * 
+ * Note: Updates below 6020 are from the 
+ * White House project (predicessor to Owh).
+ */
+
+/**
+ * SWS Update 6020: Set featured video queue
+ * to hold 2 featured videos (rather than 1).
+ */
+function sws_update_6020() {
+  // Que 3 is featured video. Set queue size to 2.
+  db_query("UPDATE nodequeue_queue "
+          ."SET size = 2 "
+          ."WHERE qid = 3 "); 
+}
+
+/**
+ * SWS Update 6021
+ * 
+ * Note: This is being implemented as a hot-fix, back ported
+ * from sws_update_6023 from owh version 6.15-0.4.6.
+ */
+function sws_update_6021() {
+  $form_state['values']['date_default_timezone'] = -14400;
+  $form_state['values']['configurable_timezones'] = 0;
+  $form_state['values']['date_first_day'] = 0;
+  $form_state['values']['date_default_timezone_name'] = 'America/New_York';
+  drupal_execute('system_date_time_settings', $form_state);
+
+/*
+  $form_state['values']['date_format_long'] = 'l, F j, Y - g:ia';
+  $form_state['values']['date_format_medium'] = 'F j, Y - H:i';
+  $form_state['values']['date_format_short'] = 'm/d/Y - H:i';
+  drupal_execute('date_api_date_formats_form', $form_state);
+// */
+}
+
+
+/**
+ * sws update 6022: enable permission module
+ */
+function sws_update_6022() {
+  $module_list = array('permission');
+  module_enable($module_list);
+}
+
+/**
+ * sws update 6023: resolve funny date issues
+ * (like date in newsclip list being 1 day off)
+ */ 
+function sws_update_6023() {
+  $form_state = '';
+  $form_state['values']['date_default_timezone'] = -14400;
+  $form_state['values']['configurable_timezones'] = 0;
+  $form_state['values']['date_first_day'] = 0;
+  $form_state['values']['date_default_timezone_name'] = 'America/New_York';
+  drupal_execute('system_date_time_settings', $form_state);
+
+/*
+  $form_state = '';
+  $form_state['values']['date_format_long'] = 'l, F j, Y - g:ia';
+  $form_state['values']['date_format_medium'] = 'F j, Y - H:i';
+  $form_state['values']['date_format_short'] = 'm/d/Y - H:i';
+  drupal_execute('date_api_date_formats_form', $form_state);
+// */
+}
+
+/**
+ * sws update 6024: enable owh_views feature module.
+ */ 
+function sws_update_6024() {
+  $module_list = array('owh_views');
+  module_enable($module_list);
+}
+
+/**
+ * sws update 6025: Set time formats.
+ */
+function sws_update_6025() {
+  variable_set('date_format_long', 'l, F j, Y - g:ia');
+  variable_set('date_format_medium', 'F j, Y - g:ia');
+  variable_set('date_format_short', 'm/d/Y - g:ia');
+}
+
+/**
+ * Add permissions to roles.
+ * 
+ * @param $role
+ *  role name
+ * 
+ * @param $new_perm
+ *  comma separated list of new permissions
+ */
+function sws_update_perm($role, $new_perm) {
+  // get current permissions
+  $sql = 'SELECT perm FROM {permission} p '
+        .'JOIN {role} r ON r.rid = p.rid '
+        ."WHERE r.name = '%s'";
+  $arg = $role;
+  $perm = db_result(db_query($sql, $arg));
+  // update permissions
+  $perm .= ", $new_perm";
+  $sql = "UPDATE {permission} p "
+        ."JOIN {role} r ON r.rid = p.rid "
+        ."SET perm = '%s' "
+        ."WHERE r.name = '%s'";
+  $args = array($perm, $role);
+  db_query($sql, $args);
+}
