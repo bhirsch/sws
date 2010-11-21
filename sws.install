@@ -86,6 +86,15 @@ function sws_update_6025() {
 }
 
 /**
+ * sws update 6026: Uninstall FCKeditor, install CKeditor
+ */
+function sws_update_6026() {
+  module_disable(array('fckeditor'));
+  fckeditor_uninstall();
+  module_enable(array('ckeditor'));
+}
+
+/**
  * Add permissions to roles.
  * 
  * @param $role
