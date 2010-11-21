@@ -90,9 +90,10 @@ function sws_update_6025() {
  */
 function sws_update_6026() {
   module_disable(array('fckeditor'));
-  fckeditor_uninstall();
-  module_enable(array('ckeditor'));
+  drupal_uninstall_module('fckeditor');
+  drupal_install_modules(array('ckeditor'));
 }
+// */
 
 /**
  * Add permissions to roles.
