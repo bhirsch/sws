@@ -89,11 +89,21 @@ function sws_update_6025() {
  * sws update 6026: Uninstall FCKeditor, install CKeditor
  */
 function sws_update_6026() {
+  // uninstall fckeditor
   module_disable(array('fckeditor'));
   drupal_uninstall_module('fckeditor');
+  // install ckeditor
   drupal_install_modules(array('ckeditor'));
-}
-// */
+  // ckeditor_role table
+  db_query("INSERT INTO {ckeditor_role} VALUES ('Default',4),('Default',6) ");
+  // ckeditor_settings table
+  db_query("UPDATE {ckeditor_settings} " 
+    ."SET settings = 'a:9:{s:4:\"rank\";a:2:{i:0;s:1:\"4\";i:1;s:1:\"6\";}s:9:\"excl_mode\";s:1:\"1\";s:4:\"excl\";s:207:\"page@*.edit-body\r\nagenda@*.edit-body\r\nevent@*.edit-body\r\nissue@*.edit-body\r\nnews-clip@*.edit-body\r\nlegislation@*.edit-body\r\npress-release@*.edit-body\r\nresource@*.edit-body\r\nslide@*.edit-body\r\nbio@*.edit-body\";s:11:\"simple_incl\";s:169:\"*.edit-signature\r\nadmin/settings/site-information.*\r\nadmin/settings/site-maintenance.*\r\n*.edit-page-help\r\n*.edit-user-registration-help\r\n*.edit-user-picture-guidelines\r\n\";s:13:\"ckeditor_path\";s:11:\"%m/ckeditor\";s:19:\"ckeditor_local_path\";s:0:\"\";s:18:\"show_fieldnamehint\";s:1:\"f\";s:10:\"excl_regex\";s:280:\"#(?:^page@.*\\.edit-body$)|(?:^agenda@.*\\.edit-body$)|(?:^event@.*\\.edit-body$)|(?:^issue@.*\\.edit-body$)|(?:^news-clip@.*\\.edit-body$)|(?:^legislation@.*\\.edit-body$)|(?:^press-release@.*\\.edit-body$)|(?:^resource@.*\\.edit-body$)|(?:^slide@.*\\.edit-body$)|(?:^bio@.*\\.edit-body$)#\";s:17:\"simple_incl_regex\";s:230:\"#(?:^.*@.*\\.edit-signature$)|(?:^.*@admin/settings/site-information\\..*$)|(?:^.*@admin/settings/site-maintenance\\..*$)|(?:^.*@.*\\.edit-page-help$)|(?:^.*@.*\\.edit-user-registration-help$)|(?:^.*@.*\\.edit-user-picture-guidelines$)#\";}' "
+    ."WHERE name = 'CKEditor Global Profile' "); 
+  db_query("UPDATE {ckeditor_settings} " 
+    ."SET settings = 'a:42:{s:15:\"allow_user_conf\";s:1:\"f\";s:7:\"filters\";a:2:{s:8:\"filter/3\";i:0;s:8:\"filter/0\";i:1;}s:2:\"ss\";s:1:\"2\";s:8:\"min_rows\";s:1:\"1\";s:9:\"excl_mode\";s:1:\"0\";s:4:\"excl\";s:0:\"\";s:11:\"simple_incl\";s:0:\"\";s:7:\"default\";s:1:\"t\";s:11:\"show_toggle\";s:1:\"t\";s:5:\"popup\";s:1:\"f\";s:4:\"skin\";s:4:\"kama\";s:7:\"uicolor\";s:7:\"default\";s:16:\"uicolor_textarea\";s:95:\"<p>\r\n	Click on the <strong>UI Color Picker</strong> button to set your color preferences.</p>\r\n\";s:12:\"uicolor_user\";s:7:\"default\";s:7:\"toolbar\";s:5:\"Basic\";s:6:\"expand\";s:1:\"t\";s:5:\"width\";s:4:\"100%\";s:4:\"lang\";s:2:\"en\";s:9:\"auto_lang\";s:1:\"t\";s:18:\"language_direction\";s:7:\"default\";s:10:\"enter_mode\";s:1:\"p\";s:16:\"shift_enter_mode\";s:2:\"br\";s:11:\"font_format\";s:35:\"p;div;pre;address;h1;h2;h3;h4;h5;h6\";s:17:\"custom_formatting\";s:1:\"f\";s:10:\"formatting\";a:1:{s:25:\"custom_formatting_options\";a:6:{s:6:\"indent\";s:6:\"indent\";s:15:\"breakBeforeOpen\";s:15:\"breakBeforeOpen\";s:14:\"breakAfterOpen\";s:14:\"breakAfterOpen\";s:15:\"breakAfterClose\";s:15:\"breakAfterClose\";s:16:\"breakBeforeClose\";i:0;s:10:\"pre_indent\";i:0;}}s:8:\"css_mode\";s:5:\"theme\";s:8:\"css_path\";s:0:\"\";s:9:\"css_style\";s:5:\"theme\";s:11:\"styles_path\";s:0:\"\";s:11:\"filebrowser\";s:8:\"ckfinder\";s:17:\"filebrowser_image\";s:0:\"\";s:17:\"filebrowser_flash\";s:0:\"\";s:13:\"UserFilesPath\";s:5:\"%b%f/\";s:21:\"UserFilesAbsolutePath\";s:7:\"%d%b%f/\";s:20:\"ckeditor_load_method\";s:11:\"ckeditor.js\";s:22:\"ckeditor_load_time_out\";s:1:\"0\";s:21:\"forcePasteAsPlainText\";s:1:\"f\";s:17:\"scayt_autoStartup\";s:1:\"t\";s:15:\"theme_config_js\";s:1:\"f\";s:7:\"js_conf\";s:0:\"\";s:10:\"excl_regex\";s:0:\"\";s:17:\"simple_incl_regex\";s:0:\"\";}' "
+    ."WHERE name = 'Default' ");
+} 
 
 /**
  * Add permissions to roles.
