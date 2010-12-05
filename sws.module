@@ -303,8 +303,9 @@ function sws_theme($existing, $type, $theme, $path) {
  */
 /*
 function sws_submit_test(&$form, &$form_state){
-dsm($form);
-dsm($form_state);
+dsm($form, '$form');
+dsm($form_state, '$form_state');
+variable_set('sws dev', $form_state);
 }
 // */
 
@@ -312,12 +313,11 @@ dsm($form_state);
  * Implementation of hook_formalter().
  */
 function sws_form_alter(&$form, $form_state, $form_id) {
-//dsm($form_id);
 /*
-if ($form_id == 'date_api_date_formats_form') {
-  $form['#submit'][1] = $form['#submit'][0];
-  $form['#submit'][0] = 'sws_submit_test';
-//   dsm($form);
+dsm($form_id);
+if ($form_id == 'ckeditor_admin_global_profile_form') {
+   $form['#submit'][1] = $form['#submit'][0];
+   $form['#submit'][0] = 'sws_submit_test';
 }
 // */
 
@@ -359,6 +359,7 @@ if ($form_id == 'date_api_date_formats_form') {
 
   // Alter Features form
   if ($form_id == 'features_admin_form' && !user_access('administer features')) {
+    // @TODO cruft? can we delete this?
     unset($form['testing']);
   }
 }
