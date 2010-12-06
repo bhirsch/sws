@@ -320,6 +320,7 @@ if ($form_id == 'ckeditor_admin_global_profile_form') {
    $form['#submit'][0] = 'sws_submit_test';
 }
 // */
+// $form['field_teaser']['format'] = 0;
 
   if (substr($form_id, -9) == 'node_form') {
     // Don't include menu settings option on node forms.
