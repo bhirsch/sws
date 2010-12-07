@@ -148,8 +148,15 @@ function sws_update_6027() {
  */
 /*
 function sws_update_6028() {
-  $revert = array('page');
-  features_revert($revert);
+//function sws_update_6029() {
+  module_load_include('inc', 'features', 'features.admin');
+  $form_state['values'] = array(
+    'module' => 'page',
+    'revert' => array('content' => 1, 'fieldgroup' => 1),  
+  );
+  //drupal_execute('features_admin_components', $form_state);
+  $form = 0;
+  features_admin_components_revert(&$form, &$form_state);
 }
 // */
 
