@@ -144,11 +144,10 @@ function sws_update_6027() {
 }
 
 /**
- * sws update 6028: Revert page feature.
+ * sws update 6029: Revert page feature.
  */
 /*
-function sws_update_6028() {
-//function sws_update_6029() {
+function sws_update_6029() {
   module_load_include('inc', 'features', 'features.admin');
   $form_state['values'] = array(
     'module' => 'page',
