@@ -159,11 +159,21 @@ function sws_update_6028() {
   variable_set('paccess_dev', TRUE);
   variable_set('paccess_depricated', TRUE);
   variable_set('paccess_testing', TRUE);
+  variable_set('paccess_starswithstripes', TRUE);
+}
+
+/**
+ * sws update 6029: Update date formats from military time to am/pm.
+ */
+function sws_update_6029() {
+  variable_set('date_format_long', 's:16:"l, F j, Y - g:ia";');
+  variable_set('date_format_medium', 's:15:"D, m/d/Y - g:ia";');
+  varaible_set('date_format_short', 's:12:"M j Y - g:ia";');
 }
 
 /**
  * TODO for alpha2 upgrade
- * sws update 6029: Revert page feature.
+ * sws update 6030: Revert page feature.
  */
 /*
 function sws_update_6029() {
