@@ -168,7 +168,7 @@ function sws_update_6028() {
 function sws_update_6029() {
   variable_set('date_format_long', 's:16:"l, F j, Y - g:ia";');
   variable_set('date_format_medium', 's:15:"D, m/d/Y - g:ia";');
-  varaible_set('date_format_short', 's:12:"M j Y - g:ia";');
+  variable_set('date_format_short', 's:12:"M j Y - g:ia";');
 }
 
 /**
