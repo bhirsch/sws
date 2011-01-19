@@ -189,6 +189,8 @@ function sws_update_6030() {
   variable_set('press_releases_footer', $var);
 
   // Update news clip variables
+  $var = variable_get('sws_news_clip_footer', NULL);
+  variable_set('news_clips_footer', $var);
 }
 
 /**
