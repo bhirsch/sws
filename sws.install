@@ -208,14 +208,16 @@ function sws_update_6030() {
   module_enable($module_list);
 
   // Update admin_toolbar
+  // Note: fcp modules add/remove themselves to admin toolbar, 
+  // so they don't need to be added here.
   $admin_toolbar = variable_get('admin_toolbar', NULL);
   $admin_toolbar['layout'] = 'horizontal';
   $admin_toolbar['position'] = 'nw';
   $admin_toolbar['behavior'] = 'ah';
   $admin_toolbar = variable_get('admin_toolbar', null);
-  // Disable depricated sws_mgmt blocks.
+  // Disable depricated sws_mgmt blocks and create content
   foreach($admin_toolbar['blocks'] as $key => $value) {
-    if(substr($key, 0, 8) == 'sws_mgmt') {
+    if(substr($key, 0, 8) == 'sws_mgmt' || $key == 'admin-create') {
       unset($admin_toolbar['blocks'][$key]);
     }
   }
