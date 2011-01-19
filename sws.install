@@ -172,6 +172,26 @@ function sws_update_6029() {
 }
 
 /**
+ * sws update 6030: Features Control Panel updates.
+ */
+function sws_update_6030() {
+  // Enable fcontrolpanel
+  // Enable fcp (features control panel) modules.
+
+  // Update press release variables
+  $var = variable_get('sws_pr_header', NULL);
+  variable_set('press_releases_header', $var);
+
+  $var = variable_get('sws_pr_subhead', NULL);
+  variable_set('press_releases_subhead', $var);
+
+  $var = variable_get('sws_pr_footer', NULL);
+  variable_set('press_releases_footer', $var);
+
+  // Update news clip variables
+}
+
+/**
  * TODO for alpha2 upgrade
  * sws update 6030: Revert page feature.
  */
