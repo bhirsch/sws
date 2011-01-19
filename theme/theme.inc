@@ -106,10 +106,11 @@ function template_preprocess_sws_map(&$variables) {
 /**
  * Implementation of template_preprocess().
  */
+ // todo Move to press_releases module
 function template_preprocess_sws_pr_header(&$variables) {
   $node = $variables['node'];
-  $variables['org'] = variable_get('sws_pr_header', NULL);
-  $variables['dept'] = variable_get('sws_pr_subhead', NULL);
+  $variables['org'] = variable_get('press_releases_header', NULL);
+  $variables['dept'] = variable_get('press_releases_subhead', NULL);
   $variables['headline'] = $node->title;
   $variables['subhead'] = $node->field_pr_subhead[0]['safe'];
   $variables['status'] = $node->field_pr_status[0]['safe'];
@@ -127,7 +128,7 @@ function template_preprocess_sws_pr_header(&$variables) {
  * Implementation of template_preprocess().
  */
 function template_preprocess_sws_pr_footer(&$variables) {
-  $variables['footer'] = check_markup(variable_get('sws_pr_footer', NULL));
+  $variables['footer'] = check_markup(variable_get('press_releases_footer', NULL));
 }
 
 /**
@@ -198,7 +199,7 @@ function template_preprocess_sws_newsclip_header(&$variables) {
  * Implementation of template_preprocess().
  */
 function template_preprocess_sws_newsclip_footer(&$variables) {
-  $variables['footer'] = check_markup(variable_get('sws_news_clip_footer', NULL));
+  $variables['footer'] = check_markup(variable_get('news_clips_footer', NULL));
 }
 
 /**
