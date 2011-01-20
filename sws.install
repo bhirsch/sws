@@ -234,7 +234,9 @@ function sws_update_6031() {
     }
   } else {
     // If blocks array is empty, put fcontrol packages in it.
-    fcontrolpanel_admin_toolbar('enable');
+    if(function_exists('fcontrolpanel_admin_toolbar')) {
+      fcontrolpanel_admin_toolbar('enable');
+    }
   }
   variable_set('admin_toolbar', $admin_toolbar);
 
