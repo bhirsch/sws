@@ -253,10 +253,10 @@ function sws_news_org_info($node) {
     }
   $org_name = check_plain($node->title);
 
-  $b->banner = $banner;
-  $b->banner_link = $banner_link;
-  $b->website = $website; 
-  $b->size = $preset_namespace;
+  $b->banner = ($banner) ? $banner : '';
+  $b->banner_link = ($banner_link) ? $banner_link : '';
+  $b->website = ($website) ? $website : ''; 
+  $b->size = ($preset_namespace) ? $preset_namespace : '';
   $b->display_banner = $node->field_news_display_banner[0]['value'];
   $b->org_name = $org_name;
   $b->org_name_link = ($website) ? l($org_name, $website, $options) : '' ;
