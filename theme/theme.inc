@@ -171,10 +171,20 @@ function template_preprocess_sws_newsclip_header(&$variables) {
   }
 
   // News Contact 
+  /*
+  // @todo 
+    // The News Contact node type is not in use. We can probably 
+    // remove this. No production
+    // sites are currently integrating with Pylons CRM.In Feb 2011
+    // These lines started coughing up ugly error messages on
+    // one live website.
+  // 
   foreach ($node->field_news_contact as $author_nid) {
     $author_node = node_load($author_nid);
     $author[] = check_plain($author_node->title);
   }
+  // */
+
   // By Line
   $by = $node->field_news_by[0]['safe'];
 
