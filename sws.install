@@ -306,7 +306,15 @@ function sws_update_6031() {
   $var = variable_get('sws_news_clip_footer', NULL);
   variable_set('news_clips_footer', $var);
 }
-// */
+
+/**
+ * sws_update_6032: Install mtheme
+ * zen_mtheme, whitehouse_mtheme modules.
+ */
+function sws_update_6032() {
+  $module_list = array('mtheme', 'zen_mtheme', 'whitehouse_mtheme');
+  module_enable($module_list);
+}
 
 /**
  * TODO for alpha2 upgrade
