@@ -313,36 +313,32 @@ variable_set('sws dev', $form_state);
  * Implementation of hook_formalter().
  */
 function sws_form_alter(&$form, $form_state, $form_id) {
-/*
-dsm($form_id);
-if ($form_id == 'ckeditor_admin_global_profile_form') {
-   $form['#submit'][1] = $form['#submit'][0];
-   $form['#submit'][0] = 'sws_submit_test';
-}
-// */
-// $form['field_teaser']['format'] = 0;
+//dsm($form_id);
 
   if (substr($form_id, -9) == 'node_form') {
     // Don't include menu settings option on node forms.
     unset($form['menu']);
-    // Anyone with create content permissions should be able 
+    // Any authenticated user 
+    // with create content permissions should be able 
     // to publish/unpublish. (Not just people with 
     // 'administer node' permissions.)
     // Note: This also seems to get rid of 
     // sticky and promote to front (which seems fine).
-    $form['options'] = array(
-      '#type' => 'fieldset',
-      '#access' => true,
-      '#title' => t('Publishing options'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#weight' => 25,
-    );  
-    $form['options']['status'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Published'),
-      '#default_value' => $form['#node']->status,
-    );
+    if (user_is_logged_in()) {
+      $form['options'] = array(
+        '#type' => 'fieldset',
+        '#access' => true,
+        '#title' => t('Publishing options'),
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#weight' => 25,
+      );  
+      $form['options']['status'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Published'),
+        '#default_value' => $form['#node']->status,
+      );
+    }
   }
 
   // TODO Create admin setting to enable/disable field_news_contact on newsclips
