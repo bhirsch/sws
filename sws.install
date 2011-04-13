@@ -308,9 +308,9 @@ function sws_update_6031() {
 }
 
 /**
- * sws_update_6032: Install mtheme.
+ * sws_update_6033: Install mtheme.
  */
-function sws_update_6032() {
+function sws_update_6033() {
   $module_list = array('mtheme');
   module_enable($module_list);
 }
